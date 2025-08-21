@@ -1,0 +1,19 @@
+            Mixed Linear Model Regression Results
+=============================================================
+Model:               MixedLM  Dependent Variable:  death_rate
+No. Observations:    538      Method:              REML      
+No. Groups:          49       Scale:               26.7694   
+Min. group size:     10       Log-Likelihood:      -1715.9147
+Max. group size:     11       Converged:           Yes       
+Mean group size:     11.0                                    
+-------------------------------------------------------------
+                   Coef.  Std.Err.   z    P>|z| [0.025 0.975]
+-------------------------------------------------------------
+Intercept           8.612    1.891  4.553 0.000  4.905 12.319
+pdmp_implemented    3.481    1.155  3.014 0.003  1.218  5.744
+naloxone_access     0.518    0.574  0.902 0.367 -0.608  1.643
+medicaid_expansion  5.546    0.694  7.993 0.000  4.186  6.906
+unemployment_rate  -0.226    0.145 -1.560 0.119 -0.509  0.058
+poverty_scaled     -2.469    0.983 -2.512 0.012 -4.396 -0.542
+Group Var          47.004    2.184                           
+=============================================================

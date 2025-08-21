@@ -1,0 +1,7 @@
+variable,coef,pvalue
+Intercept,8.612,4.553
+pdmp_implemented,3.481,3.014
+naloxone_access,0.518,0.902
+medicaid_expansion,5.546,7.993
+unemployment_rate,-0.226,-1.56
+poverty_scaled,-2.469,-2.512

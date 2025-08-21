@@ -1,0 +1,36 @@
+                          PanelOLS Estimation Summary                           
+================================================================================
+Dep. Variable:             death_rate   R-squared:                        0.0047
+Estimator:                   PanelOLS   R-squared (Between):             -0.0051
+No. Observations:                 538   R-squared (Within):               0.0857
+Date:                Thu, Aug 21 2025   R-squared (Overall):              0.0330
+Time:                        07:06:29   Log-likelihood                   -1502.8
+Cov. Estimator:             Clustered                                           
+                                        F-statistic:                      0.4506
+Entities:                          49   P-value                           0.8129
+Avg Obs:                       10.980   Distribution:                   F(5,474)
+Min Obs:                      10.0000                                           
+Max Obs:                       11.000   F-statistic (robust):             0.1126
+                                        P-value                           0.9896
+Time periods:                      11   Distribution:                   F(5,474)
+Avg Obs:                       48.909                                           
+Min Obs:                       48.000                                           
+Max Obs:                       49.000                                           
+                                                                                
+                                 Parameter Estimates                                  
+======================================================================================
+                    Parameter  Std. Err.     T-stat    P-value    Lower CI    Upper CI
+--------------------------------------------------------------------------------------
+const                  11.516     2.2404     5.1402     0.0000      7.1137      15.918
+pdmp_implemented       1.0329     2.2701     0.4550     0.6493     -3.4277      5.4936
+naloxone_access        0.1694     0.4756     0.3562     0.7218     -0.7651      1.1039
+medicaid_expansion     0.4851     1.4253     0.3404     0.7337     -2.3156      3.2859
+poverty_scaled         0.3749     3.4840     0.1076     0.9144     -6.4711      7.2208
+income_scaled          0.4692     1.1168     0.4201     0.6746     -1.7254      2.6638
+======================================================================================
+
+F-test for Poolability: 26.837
+P-value: 0.0000
+Distribution: F(58,474)
+
+Included effects: Entity, Time

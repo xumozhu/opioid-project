@@ -1,0 +1,562 @@
+state,year,income
+Alabama,2010,55440
+Alaska,2010,78340
+Arizona,2010,63510
+Arkansas,2010,52260
+California,2010,73520
+Colorado,2010,81570
+Connecticut,2010,89380
+Delaware,2010,74780
+District of Columbia,2010,77100
+Florida,2010,59680
+Georgia,2010,59750
+Hawaii,2010,80630
+Idaho,2010,63720
+Illinois,2010,68700
+Indiana,2010,62490
+Iowa,2010,66380
+Kansas,2010,62370
+Kentucky,2010,55670
+Louisiana,2010,53220
+Maine,2010,64910
+Maryland,2010,86950
+Massachusetts,2010,82520
+Michigan,2010,62670
+Minnesota,2010,70860
+Mississippi,2010,51680
+Missouri,2010,62050
+Montana,2010,55910
+Nebraska,2010,71110
+Nevada,2010,69340
+New Hampshire,2010,90240
+New Jersey,2010,85280
+New Mexico,2010,61120
+New York,2010,67420
+North Carolina,2010,59360
+North Dakota,2010,69080
+Ohio,2010,62140
+Oklahoma,2010,58370
+Oregon,2010,68530
+Pennsylvania,2010,65430
+Rhode Island,2010,69910
+South Carolina,2010,56470
+South Dakota,2010,61420
+Tennessee,2010,52260
+Texas,2010,64010
+Utah,2010,76790
+Vermont,2010,75740
+Virginia,2010,81750
+Washington,2010,76060
+West Virginia,2010,57930
+Wisconsin,2010,68190
+Wyoming,2010,70700
+Alabama,2011,55940
+Alaska,2011,75440
+Arizona,2011,63860
+Arkansas,2011,54250
+California,2011,70100
+Colorado,2011,77010
+Connecticut,2011,85920
+Delaware,2011,71800
+District of Columbia,2011,72570
+Florida,2011,59250
+Georgia,2011,60390
+Hawaii,2011,77560
+Idaho,2011,62340
+Illinois,2011,66510
+Indiana,2011,58380
+Iowa,2011,65960
+Kansas,2011,60610
+Kentucky,2011,52350
+Louisiana,2011,53400
+Maine,2011,65270
+Maryland,2011,90470
+Massachusetts,2011,83160
+Michigan,2011,64200
+Minnesota,2011,75950
+Mississippi,2011,53970
+Missouri,2011,60120
+Montana,2011,52900
+Nebraska,2011,73050
+Nevada,2011,61790
+New Hampshire,2011,86530
+New Jersey,2011,81880
+New Mexico,2011,55140
+New York,2011,66510
+North Carolina,2011,59380
+North Dakota,2011,74030
+Ohio,2011,58650
+Oklahoma,2011,63650
+Oregon,2011,67680
+Pennsylvania,2011,65560
+Rhode Island,2011,64410
+South Carolina,2011,52650
+South Dakota,2011,62030
+Tennessee,2011,55530
+Texas,2011,64420
+Utah,2011,72890
+Vermont,2011,68120
+Virginia,2011,82250
+Washington,2011,74670
+West Virginia,2011,54930
+Wisconsin,2011,68380
+Wyoming,2011,71600
+Alabama,2012,56010
+Alaska,2012,82020
+Arizona,2012,60620
+Arkansas,2012,50280
+California,2012,73480
+Colorado,2012,73780
+Connecticut,2012,82790
+Delaware,2012,63110
+District of Columbia,2012,84080
+Florida,2012,59370
+Georgia,2012,62010
+Hawaii,2012,72500
+Idaho,2012,61750
+Illinois,2012,66670
+Indiana,2012,59480
+Iowa,2012,68870
+Kansas,2012,64440
+Kentucky,2012,52940
+Louisiana,2012,50370
+Maine,2012,63350
+Maryland,2012,92570
+Massachusetts,2012,82030
+Michigan,2012,64450
+Minnesota,2012,79630
+Mississippi,2012,47220
+Missouri,2012,64130
+Montana,2012,58100
+Nebraska,2012,67260
+Nevada,2012,61000
+New Hampshire,2012,87390
+New Jersey,2012,85940
+New Mexico,2012,55960
+New York,2012,61440
+North Carolina,2012,53550
+North Dakota,2012,71860
+Ohio,2012,57180
+Oklahoma,2012,62380
+Oregon,2012,66720
+Pennsylvania,2012,66890
+Rhode Island,2012,72250
+South Carolina,2012,57220
+South Dakota,2012,63680
+Tennessee,2012,55400
+Texas,2012,66910
+Utah,2012,75180
+Vermont,2012,71620
+Virginia,2012,83290
+Washington,2012,80140
+West Virginia,2012,56120
+Wisconsin,2012,68400
+Wyoming,2012,74110
+Alabama,2013,60250
+Alaska,2013,92270
+Arizona,2013,66980
+Arkansas,2013,50130
+California,2013,77400
+Colorado,2013,86470
+Connecticut,2013,88220
+Delaware,2013,68870
+District of Columbia,2013,76460
+Florida,2013,61790
+Georgia,2013,59830
+Hawaii,2013,81780
+Idaho,2013,61710
+Illinois,2013,68670
+Indiana,2013,62970
+Iowa,2013,76590
+Kansas,2013,60880
+Kentucky,2013,57140
+Louisiana,2013,59110
+Maine,2013,69970
+Maryland,2013,88300
+Massachusetts,2013,79610
+Michigan,2013,72020
+Minnesota,2013,81900
+Mississippi,2013,41170
+Missouri,2013,58950
+Montana,2013,55000
+Nebraska,2013,73370
+Nevada,2013,66010
+New Hampshire,2013,87980
+New Jersey,2013,81170
+New Mexico,2013,51140
+New York,2013,63620
+North Carolina,2013,59000
+North Dakota,2013,75310
+Ohio,2013,64610
+Oklahoma,2013,58770
+Oregon,2013,62390
+Pennsylvania,2013,70220
+Rhode Island,2013,71710
+South Carolina,2013,55460
+South Dakota,2013,68010
+Tennessee,2013,55210
+Texas,2013,65450
+Utah,2013,77730
+Vermont,2013,83410
+Virginia,2013,83910
+Washington,2013,81390
+West Virginia,2013,54840
+Wisconsin,2013,65860
+Wyoming,2013,85870
+Alabama,2014,53070
+Alaska,2014,84900
+Arizona,2014,61830
+Arkansas,2014,56390
+California,2014,75930
+Colorado,2014,76500
+Connecticut,2014,88080
+Delaware,2014,72210
+District of Columbia,2014,85710
+Florida,2014,57920
+Georgia,2014,62210
+Hawaii,2014,89410
+Idaho,2014,67080
+Illinois,2014,68940
+Indiana,2014,60330
+Iowa,2014,72570
+Kansas,2014,67090
+Kentucky,2014,53710
+Louisiana,2014,53230
+Maine,2014,64910
+Maryland,2014,95610
+Massachusetts,2014,79280
+Michigan,2014,65280
+Minnesota,2014,84410
+Mississippi,2014,44590
+Missouri,2014,71090
+Montana,2014,64150
+Nebraska,2014,71390
+Nevada,2014,62610
+New Hampshire,2014,92140
+New Jersey,2014,81900
+New Mexico,2014,58610
+New York,2014,68180
+North Carolina,2014,58730
+North Dakota,2014,76240
+Ohio,2014,62320
+Oklahoma,2014,59250
+Oregon,2014,73910
+Pennsylvania,2014,69260
+Rhode Island,2014,73600
+South Carolina,2014,56400
+South Dakota,2014,66600
+Tennessee,2014,54880
+Texas,2014,67630
+Utah,2014,79570
+Vermont,2014,76210
+Virginia,2014,83050
+Washington,2014,74150
+West Virginia,2014,49650
+Wisconsin,2014,72910
+Wyoming,2014,69910
+Alabama,2015,55920
+Alaska,2015,94360
+Arizona,2015,65640
+Arkansas,2015,53770
+California,2015,79940
+Colorado,2015,83660
+Connecticut,2015,91570
+Delaware,2015,72560
+District of Columbia,2015,88030
+Florida,2015,61340
+Georgia,2015,63780
+Hawaii,2015,81050
+Idaho,2015,64850
+Illinois,2015,75900
+Indiana,2015,65310
+Iowa,2015,76450
+Kansas,2015,68930
+Kentucky,2015,53250
+Louisiana,2015,57690
+Maine,2015,63760
+Maryland,2015,92450
+Massachusetts,2015,85250
+Michigan,2015,68090
+Minnesota,2015,86340
+Mississippi,2015,50300
+Missouri,2015,74370
+Montana,2015,64570
+Nebraska,2015,75970
+Nevada,2015,65340
+New Hampshire,2015,95070
+New Jersey,2015,85880
+New Mexico,2015,56680
+New York,2015,72870
+North Carolina,2015,63820
+North Dakota,2015,72130
+Ohio,2015,66960
+Oklahoma,2015,59140
+Oregon,2015,76420
+Pennsylvania,2015,75870
+Rhode Island,2015,69980
+South Carolina,2015,58240
+South Dakota,2015,69180
+Tennessee,2015,59460
+Texas,2015,70950
+Utah,2015,83240
+Vermont,2015,74740
+Virginia,2015,77240
+Washington,2015,84480
+West Virginia,2015,53800
+Wisconsin,2015,69630
+Wyoming,2015,76540
+Alabama,2016,58800
+Alaska,2016,94290
+Arizona,2016,71100
+Arkansas,2016,57170
+California,2016,82980
+Colorado,2016,87870
+Connecticut,2016,94540
+Delaware,2016,72280
+District of Columbia,2016,88390
+Florida,2016,63730
+Georgia,2016,66650
+Hawaii,2016,89820
+Idaho,2016,70440
+Illinois,2016,76440
+Indiana,2016,69850
+Iowa,2016,73590
+Kansas,2016,70740
+Kentucky,2016,56500
+Louisiana,2016,52540
+Maine,2016,63330
+Maryland,2016,91850
+Massachusetts,2016,89990
+Michigan,2016,71090
+Minnesota,2016,87440
+Mississippi,2016,51180
+Missouri,2016,68510
+Montana,2016,71070
+Nebraska,2016,73930
+Nevada,2016,69020
+New Hampshire,2016,94960
+New Jersey,2016,85260
+New Mexico,2016,60330
+New York,2016,76500
+North Carolina,2016,66950
+North Dakota,2016,74940
+Ohio,2016,67220
+Oklahoma,2016,63440
+Oregon,2016,73640
+Pennsylvania,2016,75930
+Rhode Island,2016,76620
+South Carolina,2016,67660
+South Dakota,2016,71540
+Tennessee,2016,63940
+Texas,2016,72410
+Utah,2016,84030
+Vermont,2016,75760
+Virginia,2016,82750
+Washington,2016,87550
+West Virginia,2016,55230
+Wisconsin,2016,74490
+Wyoming,2016,72010
+Alabama,2017,62250
+Alaska,2017,95440
+Arizona,2017,73060
+Arkansas,2017,60880
+California,2017,85710
+Colorado,2017,91760
+Connecticut,2017,90930
+Delaware,2017,79500
+District of Columbia,2017,99470
+Florida,2017,64960
+Georgia,2017,70960
+Hawaii,2017,90070
+Idaho,2017,72810
+Illinois,2017,80730
+Indiana,2017,71920
+Iowa,2017,77670
+Kansas,2017,69630
+Kentucky,2017,60790
+Louisiana,2017,53310
+Maine,2017,65240
+Maryland,2017,100500
+Massachusetts,2017,93300
+Michigan,2017,69030
+Minnesota,2017,85630
+Mississippi,2017,52960
+Missouri,2017,69180
+Montana,2017,70250
+Nebraska,2017,72910
+Nevada,2017,71030
+New Hampshire,2017,92550
+New Jersey,2017,87180
+New Mexico,2017,55800
+New York,2017,75310
+North Carolina,2017,60630
+North Dakota,2017,73630
+Ohio,2017,74270
+Oklahoma,2017,63490
+Oregon,2017,76480
+Pennsylvania,2017,75000
+Rhode Island,2017,80030
+South Carolina,2017,66740
+South Dakota,2017,69650
+Tennessee,2017,67680
+Texas,2017,73540
+Utah,2017,85400
+Vermont,2017,77930
+Virginia,2017,86650
+Washington,2017,87550
+West Virginia,2017,57460
+Wisconsin,2017,77690
+Wyoming,2017,72860
+Alabama,2018,59900
+Alaska,2018,82450
+Arizona,2018,74710
+Arkansas,2018,59720
+California,2018,84560
+Colorado,2018,87610
+Connecticut,2018,87340
+Delaware,2018,77990
+District of Columbia,2018,102900
+Florida,2018,65550
+Georgia,2018,66960
+Hawaii,2018,96100
+Idaho,2018,70450
+Illinois,2018,84140
+Indiana,2018,71850
+Iowa,2018,82430
+Kansas,2018,76700
+Kentucky,2018,65440
+Louisiana,2018,59950
+Maine,2018,70370
+Maryland,2018,103400
+Massachusetts,2018,103600
+Michigan,2018,72510
+Minnesota,2018,86150
+Mississippi,2018,51320
+Missouri,2018,74050
+Montana,2018,69190
+Nebraska,2018,81060
+Nevada,2018,74210
+New Hampshire,2018,97580
+New Jersey,2018,88980
+New Mexico,2018,57920
+New York,2018,80700
+North Carolina,2018,64020
+North Dakota,2018,79780
+Ohio,2018,73930
+Oklahoma,2018,65300
+Oregon,2018,82970
+Pennsylvania,2018,77400
+Rhode Island,2018,74690
+South Carolina,2018,68910
+South Dakota,2018,71330
+Tennessee,2018,67250
+Texas,2018,71720
+Utah,2018,92450
+Vermont,2018,84050
+Virginia,2018,92550
+Washington,2018,95640
+West Virginia,2018,60670
+Wisconsin,2018,75130
+Wyoming,2018,75020
+Alabama,2019,66430
+Alaska,2019,92670
+Arizona,2019,83540
+Arkansas,2019,64470
+California,2019,92330
+Colorado,2019,85700
+Connecticut,2019,103200
+Delaware,2019,87700
+District of Columbia,2019,110100
+Florida,2019,69000
+Georgia,2019,66940
+Hawaii,2019,104000
+Idaho,2019,78000
+Illinois,2019,87950
+Indiana,2019,78840
+Iowa,2019,78080
+Kansas,2019,86470
+Kentucky,2019,65800
+Louisiana,2019,61120
+Maine,2019,78660
+Maryland,2019,113000
+Massachusetts,2019,103700
+Michigan,2019,75790
+Minnesota,2019,96250
+Mississippi,2019,52940
+Missouri,2019,71630
+Montana,2019,71150
+Nebraska,2019,86370
+Nevada,2019,83820
+New Hampshire,2019,102700
+New Jersey,2019,103700
+New Mexico,2019,62780
+New York,2019,84940
+North Carolina,2019,72290
+North Dakota,2019,82780
+Ohio,2019,76440
+Oklahoma,2019,70210
+Oregon,2019,87960
+Pennsylvania,2019,83430
+Rhode Island,2019,82920
+South Carolina,2019,73320
+South Dakota,2019,75950
+Tennessee,2019,66940
+Texas,2019,79720
+Utah,2019,99910
+Vermont,2019,87830
+Virginia,2019,96120
+Washington,2019,97470
+West Virginia,2019,63480
+Wisconsin,2019,79620
+Wyoming,2019,76990
+Alabama,2020,63980
+Alaska,2020,87440
+Arizona,2020,78480
+Arkansas,2020,59400
+California,2020,90840
+Colorado,2020,98010
+Connecticut,2020,92930
+Delaware,2020,81920
+District of Columbia,2020,103200
+Florida,2020,67570
+Georgia,2020,69330
+Hawaii,2020,94560
+Idaho,2020,78060
+Illinois,2020,86960
+Indiana,2020,78150
+Iowa,2020,80510
+Kansas,2020,85500
+Kentucky,2020,66400
+Louisiana,2020,59880
+Maine,2020,74510
+Maryland,2020,110900
+Massachusetts,2020,102700
+Michigan,2020,75330
+Minnesota,2020,92130
+Mississippi,2020,52800
+Missouri,2020,72740
+Montana,2020,66380
+Nebraska,2020,84520
+Nevada,2020,71550
+New Hampshire,2020,104000
+New Jersey,2020,100100
+New Mexico,2020,59550
+New York,2020,80320
+North Carolina,2020,70700
+North Dakota,2020,75010
+Ohio,2020,70640
+Oklahoma,2020,61380
+Oregon,2020,89910
+Pennsylvania,2020,82810
+Rhode Island,2020,93790
+South Carolina,2020,70590
+South Dakota,2020,82110
+Tennessee,2020,64310
+Texas,2020,80020
+Utah,2020,98260
+Vermont,2020,78680
+Virginia,2020,96180
+Washington,2020,95180
+West Virginia,2020,60800
+Wisconsin,2020,78860
+Wyoming,2020,76570
