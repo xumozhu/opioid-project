@@ -23,8 +23,6 @@ The goal is to provide **policy-informed, data-driven insights** with an interac
 
 ---
 
----
-
 ## 🔬 Data & Sources
 - **Mortality:** CDC WONDER / KFF (opioid overdose death rates)  
 - **Policies:** PDAPS, NCSL (PDMP, Naloxone Access, Medicaid Expansion)  
@@ -67,10 +65,10 @@ The goal is to provide **policy-informed, data-driven insights** with an interac
 ---
 
 ## 📸 Selected Figures
-![Feature Importance](outputs/feature_importance.png)  
-![Predicted vs Actual](outputs/predicted_vs_actual.png)  
-![Policy Coefficients](outputs/policy_coef_plot.png)  
-![Poverty vs Deaths](outputs/poverty_vs_deathrate.png)  
+![Predicted vs Actual 2019](outputs/predicted_vs_actual_2019.png)  
+![Predicted vs Actual 2020](outputs/predicted_vs_actual_2020.png)  
+![Predicted vs Actual ](outputs/predicted_vs_actual.png)  
+![feature importance](outputs/feature_importance.png)  
 
 ---
 
@@ -116,9 +114,8 @@ The goal is to provide **policy-informed, data-driven insights** with an interac
 ---
 
 ## ✍️ Author
-**Xumo (Chloe) Zhu**  
-UC San Diego · B.S. Math–Statistics & Probability (Mar 2025)  
-Public Health & Policy Data Science  
+**Xumo Zhu**  
+UC San Diego · B.S. Math–Statistics & Probability (Gaduated in March,2025)  
 
 - **GitHub:** [xumozhu](https://github.com/xumozhu)  
 - **LinkedIn:** [Xumo Zhu](https://www.linkedin.com/in/xumo-z-a39b1524b/)  
