@@ -51,13 +51,13 @@ if section == "ℹ️ Introduction":
         for fname in ["hero_banner.png", "hero_map.png"]:
             fpath = os.path.join(ASSETS_DIR, fname)
             if os.path.exists(fpath):
-                st.image(fpath, use_container_width=True, caption=None)
+                st.image(fpath, use_column_width=True, caption=None)
                 return
 
         # Try a saved figure from outputs
         saved_trend = os.path.join(OUT_DIR, "overall_death_trend.png")
         if os.path.exists(saved_trend):
-            st.image(saved_trend, use_container_width=True, caption=None)
+            st.image(saved_trend, use_column_width=True, caption=None)
             return
 
         # Fallback: draw a quick national trend from the merged panel
@@ -113,8 +113,6 @@ if section == "ℹ️ Introduction":
     render_kpis()
     st.markdown("---")
     st.caption("👩‍💻 Built by **Xumo Zhu**")
-
-
 
     st.subheader("🧾 Project Overview")
 
@@ -189,7 +187,7 @@ if section == "ℹ️ Introduction":
 - Forecasting tools can help states **prioritize** early-warning and resource allocation.  
     """)
 
-        # --- Future improvements ---
+    # --- Future improvements ---
     st.markdown("### 🔮 Future Improvements")
     st.markdown("""
 - **Data updates**: due to the **limitations of publicly available datasets**, this study currently covers **2010–2020**.  
@@ -201,8 +199,6 @@ if section == "ℹ️ Introduction":
 - **Forecasting enhancements**: test **LSTM/transformer architectures** alongside XGBoost to capture temporal nonlinearities.  
 - **Dashboard deployment**: expand Streamlit into a **public-facing tool** with live CDC/KFF API integration for real-time monitoring.  
     """)
-
-
 
 # ---------- 1) State-level Trends ----------
 if section == "📈 State-level Trends":
@@ -237,7 +233,7 @@ elif section == "📊 Exploratory Data Analysis (EDA)":
     for file, caption in eda_images:
         path = os.path.join(OUT_DIR, file)
         if os.path.exists(path):
-            st.image(path, caption=caption, use_container_width=True)
+            st.image(path, caption=caption, use_column_width=True)
             st.markdown("---")
         else:
             st.info(f"Image not found: {file}")
@@ -254,7 +250,7 @@ elif section == "🤖 Machine Learning Forecast":
     ]:
         p = os.path.join(OUT_DIR, f)
         if os.path.exists(p):
-            st.image(p, caption=cap, use_container_width=True)
+            st.image(p, caption=cap, use_column_width=True)
         else:
             st.info(f"Image not found: {f}")
 
@@ -352,7 +348,7 @@ elif section == "📜 Policy Regression Results":
     st.markdown("### 2) Saved Figure & Brief Notes")
     saved_img = os.path.join(OUT_DIR, "policy_coef_plot.png")
     if os.path.exists(saved_img):
-        st.image(saved_img, caption="Saved figure: Policy effects on overdose death rate", use_container_width=True)
+        st.image(saved_img, caption="Saved figure: Policy effects on overdose death rate", use_column_width=True)
     else:
         st.info("Saved figure not found yet. Generate it via the dynamic plot above.")
 
@@ -372,4 +368,3 @@ elif section == "📜 Policy Regression Results":
                 st.text(f.read())
         else:
             st.info("Summary file not found: policy_regression_summary.txt")
-
