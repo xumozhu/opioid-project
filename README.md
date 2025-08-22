@@ -3,7 +3,6 @@
 
 ![Python](https://img.shields.io/badge/Python-3.10+-blue.svg)
 ![Streamlit](https://img.shields.io/badge/Streamlit-dashboard-brightgreen.svg)
-![Status](https://img.shields.io/badge/status-in%20progress-orange.svg)
 
 ---
 
@@ -31,36 +30,64 @@ The goal is to provide **policy-informed, data-driven insights** with an interac
 ---
 
 ## ✏ Methods
-**1) Preprocessing**  
-- Standardize to `state-year` format  
-- Encode policies as binary (0/1)  
-- Merge socio-economic covariates  
 
-**2) EDA**  
-- Yearly trends and heatmaps  
-- Cross-plots: poverty, unemployment, income vs mortality  
-- Policy adoption timelines  
+**1) Data Preprocessing**  
+- Constructed a **state-year panel dataset (2010–2020)** as the analytical backbone.  
+- Encoded major policy variables (e.g., PDMP, Medicaid Expansion, Naloxone Access) as binary indicators (0/1).  
+- Merged **socioeconomic covariates** including poverty rate, unemployment, and median household income.  
+- Standardized all datasets to a unified `state-year` format (>500 state-year observations).  
 
-**3) Statistical Modeling**  
-- **Mixed Effects Regression** (random effect: state)  
-- Example: `medicaid_expansion` coefficient ≈ **+5.55**, *p* < 0.001  
-- Weak causal interpretation with controls  
+**2) Exploratory Data Analysis (EDA)**  
+- Generated **yearly mortality trends** and national/state-level heatmaps.  
+- Produced **cross-plots** linking poverty, unemployment, and income with overdose mortality.  
+- Developed **policy adoption timelines**, highlighting state-level heterogeneity in opioid policy rollout.  
+- Created **geo-visualizations** to identify regional mortality clustering (e.g., Appalachia, Midwest).  
 
-**4) Machine Learning**  
-- Random Forest & XGBoost  
-- **Best R² ≈ 0.575**  
-- Feature importance: poverty, PDMP, Medicaid expansion  
+**3) Statistical Modeling (Policy Evaluation)**  
+- Implemented **Mixed Effects Regression (MixedLM)** with random intercepts at the state level.  
+- Controlled for year fixed effects and socioeconomic covariates.  
+- Example findings:  
+  - *Medicaid Expansion*: coefficient ≈ **+5.55**, *p* < 0.001  
+  - *PDMP Implementation*: coefficient ≈ **+3.48**, *p* = 0.003  
+  - *Poverty (scaled)*: coefficient ≈ **−2.47**, *p* = 0.012  
+- Interpretation: significant coefficients likely reflect **policy lag effects, reporting improvements, or confounding**, not direct causation.  
 
+**4) Machine Learning (Predictive Modeling)**  
+- Trained **Random Forest** and **XGBoost** regressors to predict overdose mortality.  
+- Best performance: **XGBoost with R² ≈ 0.575** on test data.  
+- **Feature importance analysis** identified poverty, PDMP adoption, and Medicaid Expansion as top predictors.  
+- Generated **Predicted vs Actual trend plots**, validating model performance and interpretability.
+   
 ---
 
 ## 📈 Key Findings
-- **PDMP implementation:** +3.48, *p* = 0.003 → significant positive correlation  
-- **Medicaid expansion:** +5.55, *p* < 0.001  
-- **Poverty (scaled):** −2.47, *p* = 0.012  
-- **Naloxone access / Unemployment:** not significant  
-- **State random effect variance:** ~47  
 
-> ⚠️ Note: Positive coefficients for PDMP/Medicaid likely reflect **policy lags, reporting differences, or confounding**, not “policies increase mortality.”  
+- **PDMP Implementation**  
+  - Coefficient ≈ **+3.48**, *p* = 0.003  
+  - Statistically significant positive association with mortality.  
+  - Interpretation: more likely reflects **improved reporting or lagged effects** rather than policies worsening outcomes.  
+
+- **Medicaid Expansion**  
+  - Coefficient ≈ **+5.55**, *p* < 0.001  
+  - Strong positive correlation with overdose mortality.  
+  - Suggests that increased healthcare access may correspond with **greater detection/reporting of overdoses**.  
+
+- **Poverty Rate (scaled)**  
+  - Coefficient ≈ **−2.47**, *p* = 0.012  
+  - Unexpected negative association.  
+  - Likely reflects **interaction with demographic structure** (e.g., rural vs urban states) rather than a protective effect of poverty.  
+
+- **Naloxone Access Laws & Unemployment Rate**  
+  - No statistically significant associations detected in the current specification.  
+  - Highlights the complexity of policy effectiveness across heterogeneous state contexts.  
+
+- **State-Level Random Effects**  
+  - Variance ≈ **47**  
+  - Confirms substantial **unobserved heterogeneity** across states, reinforcing the value of multilevel modeling.  
+
+> ⚖️ **Interpretation Note:**  
+> These findings do not imply that policies like PDMP or Medicaid Expansion *increase* mortality.  
+> Instead, they highlight the **complexity of opioid policy evaluation**, where effects are shaped by **temporal lags, reporting practices, demographic context, and policy interactions**.  
 
 ---
 
