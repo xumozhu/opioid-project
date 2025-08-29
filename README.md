@@ -54,7 +54,7 @@ The goal is to provide **policy-informed, data-driven insights** with an interac
 
 **4) Machine Learning (Predictive Modeling)**  
 - Trained **Random Forest** and **XGBoost** regressors to predict overdose mortality.  
-- Best performance: **XGBoost with R² ≈ 0.575** on test data.  
+- Best performance: **XGBoost with R² ≈ 0.732** on test data.  
 - **Feature importance analysis** identified poverty, PDMP adoption, and Medicaid Expansion as top predictors.  
 - Generated **Predicted vs Actual trend plots**, validating model performance and interpretability.
    
