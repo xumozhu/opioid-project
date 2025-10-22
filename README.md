@@ -17,9 +17,7 @@ The goal is to provide **policy-informed, data-driven insights** with an interac
 
 ## 🔗 Live Demo
 - **Interactive Dashboard (Streamlit):** 👉 [Click here to view the live app](https://opioid-project-sp39r6jjfkw3nzsw3h8ybt.streamlit.app/)
-- **Report PDF:** _coming soon_
-- **Slides / 1-pager:** _coming soon_
-
+  
 ---
 
 ## 🔬 Data & Sources
