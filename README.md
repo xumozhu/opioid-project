@@ -134,7 +134,7 @@ The goal is to provide **policy-informed, data-driven insights** with an interac
 - 📊 Interactive Streamlit dashboard  
 - 📘 PDF report  
 - 📂 GitHub repository (with full pipeline & outputs)  
-- 📝 1-page project summary (for resume/SOP)  
+- 📝 1-page project summary
 
 ---
 
