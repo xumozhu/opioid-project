@@ -248,7 +248,7 @@ elif section == "🤖 Machine Learning Forecast":
         with st.spinner("Training panel model with early stopping..."):
 
             # 1. Load dataset
-            df = pd.read_csv("merged_data_final.csv")  
+            df = pd.read_csv("datasets/merged_data_final.csv")  
 
             # 2. Lag-1 mortality
             df = df.sort_values(["state", "year"])
