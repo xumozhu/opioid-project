@@ -241,48 +241,39 @@ elif section == "📊 Exploratory Data Analysis (EDA)":
 # ---------- 3) ML Forecast ----------
 elif section == "🤖 Machine Learning Forecast":
 
-    st.subheader("🤖 Machine Learning Prediction Results (XGBoost – Panel/Lag Model)")
-    st.write("This model uses: lag-1 mortality, state fixed effects, scaled socioeconomic controls, and policy variables with temporal splitting and early stopping.")
+    st.subheader("🤖 Machine Learning Prediction Results (XGBoost – Panel Lag Model)")
 
-    if st.button("Run Full Panel XGBoost Model 🚀"):
-        with st.spinner("Training the panel model with early stopping… this may take a few seconds ⏳"):
+    if st.button("Run Full XGBoost Model 🚀"):
 
-            # ---------------------
-            # Load your full panel dataset
-            # ---------------------
-            df = pd.read_csv("datasets/merged_data_final.csv")   # <── 你换成自己的文件
+        with st.spinner("Training panel model with early stopping..."):
 
-            # LAG-1 MORTALITY
+            # 1. Load dataset
+            df = pd.read_csv("merged_data_final.csv")  
+
+            # 2. Lag-1 mortality
             df = df.sort_values(["state", "year"])
             df["lag1_rate"] = df.groupby("state", observed=True)["death_rate_per_100k"].shift(1)
 
-            # TEMPORAL SPLIT
+            # 3. Temporal split
             train_all = df[df["year"] <= 2018].dropna(subset=["lag1_rate"]).copy()
-            test      = df[df["year"] >  2018].dropna(subset=["lag1_rate"]).copy()
+            test = df[df["year"] > 2018].dropna(subset=["lag1_rate"]).copy()
 
             trn = train_all[train_all["year"] <= 2017]
             val = train_all[train_all["year"] == 2018]
 
-            # ---------------------
-            # Prepare state fixed effects (dummies)
-            # ---------------------
-            st_states = sorted(df["state"].unique())
-            X_state = pd.get_dummies(df["state"])[st_states]   # 保持一致的列顺序
+            # 4. State FE
+            X_state = pd.get_dummies(df["state"], drop_first=False)
 
-            # ---------------------
-            # Design matrix builder
-            # ---------------------
-            def design_matrix(frame, state_dummies):
-                base = [
+            # 5. Design Matrix
+            def design_matrix(frame, state_FE):
+                cols = [
                     "pdmp_implemented", "naloxone_access", "medicaid_expansion",
                     "lag1_rate",
-                    "poverty_population_scaled", "median_household_income_scaled", 
+                    "poverty_population_scaled", "median_household_income_scaled",
                     "unemployment_rate_scaled",
                 ]
-                cols = [c for c in base if c in frame.columns]
                 X = frame[cols].copy()
-                X = pd.concat([X, state_dummies.reindex(frame.index)], axis=1)
-                return X
+                return pd.concat([X, state_FE.reindex(frame.index)], axis=1)
 
             X_trn  = design_matrix(trn,  X_state)
             X_val  = design_matrix(val,  X_state)
@@ -292,9 +283,7 @@ elif section == "🤖 Machine Learning Forecast":
             y_val = val["death_rate_per_100k"]
             y_test = test["death_rate_per_100k"]
 
-            # ---------------------
-            # XGBoost with early stopping
-            # ---------------------
+            # 6. XGBoost params
             params = {
                 "objective": "reg:squarederror",
                 "eta": 0.05,
@@ -307,10 +296,12 @@ elif section == "🤖 Machine Learning Forecast":
                 "eval_metric": "rmse",
             }
 
+            # Convert to DMatrix
             dtrn = xgb.DMatrix(X_trn.values, y_trn.values)
             dval = xgb.DMatrix(X_val.values, y_val.values)
             dte  = xgb.DMatrix(X_test.values)
 
+            # 7. Train
             bst = xgb.train(
                 params,
                 dtrn,
@@ -320,23 +311,22 @@ elif section == "🤖 Machine Learning Forecast":
                 verbose_eval=False
             )
 
-            # PREDICT
+            # 8. Predict
             if bst.best_iteration is not None:
                 y_pred = bst.predict(dte, iteration_range=(0, bst.best_iteration + 1))
             else:
                 y_pred = bst.predict(dte)
 
+            # 9. Metrics
             rmse = float(np.sqrt(mean_squared_error(y_test, y_pred)))
-            r2   = float(r2_score(y_test, y_pred))
+            r2 = float(r2_score(y_test, y_pred))
 
-        # ---------------------
-        # Display results
-        # ---------------------
+        # 10. Display Metrics
         c1, c2 = st.columns(2)
-        c1.metric("XGBoost R² (Panel Model)", f"{r2:.3f}")
-        c2.metric("XGBoost RMSE", f"{rmse:.2f}")
+        c1.metric("XGBoost R² (2019–2020)", f"{r2:.3f}")
+        c2.metric("RMSE (per 100k)", f"{rmse:.2f}")
 
-        # Predicted vs Actual
+        # 11. Plot predicted vs actual
         fig, ax = plt.subplots(figsize=(6, 5))
         ax.scatter(y_test, y_pred, alpha=0.7)
         ax.plot([y_test.min(), y_test.max()],
@@ -346,12 +336,6 @@ elif section == "🤖 Machine Learning Forecast":
         ax.set_ylabel("Predicted")
         ax.set_title(f"Predicted vs Actual (R²={r2:.3f}, RMSE={rmse:.2f})")
         st.pyplot(fig)
-
-        # Feature importance
-        fig2, ax2 = plt.subplots(figsize=(6, 6))
-        xgb.plot_importance(bst, ax=ax2, max_num_features=12)
-        ax2.set_title("XGBoost Feature Importance")
-        st.pyplot(fig2)
 
 
 
