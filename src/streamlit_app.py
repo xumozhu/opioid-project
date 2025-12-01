@@ -244,7 +244,7 @@ elif section == "🤖 Machine Learning Forecast":
 
     st.subheader("🤖 Machine Learning Prediction Results (XGBoost – Panel Lag Model)")
     # Load data
-    df = pd.read_csv("merged_data_final.csv")  # 你的文件名
+    df = pd.read_csv("datasets/merged_data_final.csv")  # 你的文件名
     
     # Basic cleaning
     df = df[df["population"] > 0].copy()
