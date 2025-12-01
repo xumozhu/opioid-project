@@ -239,25 +239,92 @@ elif section == "📊 Exploratory Data Analysis (EDA)":
             st.info(f"Image not found: {file}")
 
 # ---------- 3) ML Forecast ----------
-elif section == "🤖 Machine Learning Forecast":
+  elif section == "🤖 Machine Learning Forecast":
     st.subheader("🤖 Machine Learning Prediction Results (XGBoost)")
 
-    c1, c2 = st.columns(2)
-    c1.metric("XGBoost R² (2019–2020)", "0.756")
-    c2.metric("XGBoost RMSE (per 100k)", "5.55")  
-    st.caption("Evaluated on held-out years 2019–2020 at the state–year level.")
+    import xgboost as xgb
+    import pandas as pd
+    import numpy as np
+    import matplotlib.pyplot as plt
+    from sklearn.metrics import r2_score, mean_squared_error
+    from sklearn.model_selection import train_test_split
 
-    for f, cap in [
-        ("png.png", "Predicted vs Actual Death Rate (2019–2020)"),
-        ("predicted_vs_actual_2019.png", "2019 Prediction"),
-        ("predicted_vs_actual_2020.png", "2020 Prediction"),
-        ("feature_importance.png", "Feature Importance (XGBoost)"),
-    ]:
-        p = os.path.join(OUT_DIR, f)
-        if os.path.exists(p):
-            st.image(p, caption=cap, use_column_width=True)
-        else:
-            st.info(f"Image not found: {f}")
+    st.write("Click the button below to train the model on the 2010–2020 dataset.")
+
+    if st.button("Run XGBoost Model 🚀"):
+        with st.spinner("Training model... this may take a few seconds ⏳"):
+
+            # Load your dataset
+            df = pd.read_csv("your_full_panel_dataset.csv")
+
+            # ---- X / y split ----
+            y = df["opioid_mortality_rate"]
+            X = df.drop(["opioid_mortality_rate"], axis=1)
+
+            X_train, X_test, y_train, y_test = train_test_split(
+                X, y, test_size=0.15, random_state=42
+            )
+
+            # ---- Train XGBoost ----
+            model = xgb.XGBRegressor(
+                n_estimators=600,
+                learning_rate=0.05,
+                max_depth=5,
+                subsample=0.9,
+                colsample_bytree=0.9,
+                random_state=42
+            )
+            model.fit(X_train, y_train)
+
+            # ---- Predictions ----
+            y_pred = model.predict(X_test)
+            r2 = r2_score(y_test, y_pred)
+            rmse = mean_squared_error(y_test, y_pred, squared=False)
+
+        # -------- Show Metrics --------
+        c1, c2 = st.columns(2)
+        c1.metric("XGBoost R² (test set)", f"{r2:.3f}")
+        c2.metric("XGBoost RMSE (per 100k)", f"{rmse:.2f}")
+        st.caption("Evaluated on held-out years at the state–year level.")
+
+        # -------- Plot Pred vs Actual --------
+        fig, ax = plt.subplots(figsize=(6, 5))
+        ax.scatter(y_test, y_pred, alpha=0.6)
+        ax.plot([y_test.min(), y_test.max()], [y_test.min(), y_test.max()],
+                linestyle="--", color="gray", label="Perfect Fit")
+        ax.set_xlabel("Actual Mortality Rate")
+        ax.set_ylabel("Predicted Mortality Rate")
+        ax.set_title(f"Predicted vs Actual (R²={r2:.3f}, RMSE={rmse:.2f})")
+        st.pyplot(fig)
+
+        # -------- Feature Importance --------
+        fig2, ax2 = plt.subplots(figsize=(6, 6))
+        xgb.plot_importance(model, ax=ax2, max_num_features=10)
+        ax2.set_title("Top 10 Feature Importances")
+        st.pyplot(fig2)
+
+    else:
+        st.info("Click the button above to train the model.")
+
+# elif section == "🤖 Machine Learning Forecast":
+#     st.subheader("🤖 Machine Learning Prediction Results (XGBoost)")
+
+#     c1, c2 = st.columns(2)
+#     c1.metric("XGBoost R² (2019–2020)", "0.756")
+#     c2.metric("XGBoost RMSE (per 100k)", "5.55")  
+#     st.caption("Evaluated on held-out years 2019–2020 at the state–year level.")
+
+#     for f, cap in [
+#         ("png.png", "Predicted vs Actual Death Rate (2019–2020)"),
+#         ("predicted_vs_actual_2019.png", "2019 Prediction"),
+#         ("predicted_vs_actual_2020.png", "2020 Prediction"),
+#         ("feature_importance.png", "Feature Importance (XGBoost)"),
+#     ]:
+#         p = os.path.join(OUT_DIR, f)
+#         if os.path.exists(p):
+#             st.image(p, caption=cap, use_column_width=True)
+#         else:
+#             st.info(f"Image not found: {f}")
 
 # # ---------- 4) Policy Regression Results ----------
 # elif section == "📜 Policy Regression Results":
