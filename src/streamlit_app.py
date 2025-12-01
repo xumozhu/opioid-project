@@ -32,8 +32,7 @@ section = st.sidebar.radio("Go to:", [
     "ℹ️ Introduction",          
     "📈 State-level Trends",
     "📊 Exploratory Data Analysis (EDA)",
-    "🤖 Machine Learning Forecast",
-    "📜 Policy Regression Results"
+    "🤖 Machine Learning Forecast"
 ])
 
 # ---------- 1) Introduction ----------
@@ -249,7 +248,7 @@ elif section == "🤖 Machine Learning Forecast":
     st.caption("Evaluated on held-out years 2019–2020 at the state–year level.")
 
     for f, cap in [
-        ("predicted_vs_actual.png", "Predicted vs Actual Death Rate (2019–2020)"),
+        ("outputs/png.png", "Predicted vs Actual Death Rate (2019–2020)"),
         ("predicted_vs_actual_2019.png", "2019 Prediction"),
         ("predicted_vs_actual_2020.png", "2020 Prediction"),
         ("feature_importance.png", "Feature Importance (XGBoost)"),
