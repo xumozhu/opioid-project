@@ -52,41 +52,10 @@ The goal is to provide **policy-informed, data-driven insights** with an interac
 
 **4) Machine Learning (Predictive Modeling)**  
 - Trained **Random Forest** and **XGBoost** regressors to predict overdose mortality.  
-- Best performance: **XGBoost with R² ≈ 0.732** on test data.  
+- Best performance: **XGBoost with R² ≈ 0.765** on test data.  
 - **Feature importance analysis** identified poverty, PDMP adoption, and Medicaid Expansion as top predictors.  
 - Generated **Predicted vs Actual trend plots**, validating model performance and interpretability.
    
----
-
-## 📈 Key Findings
-
-- **PDMP Implementation**  
-  - Coefficient ≈ **+3.48**, *p* = 0.003  
-  - Statistically significant positive association with mortality.  
-  - Interpretation: more likely reflects **improved reporting or lagged effects** rather than policies worsening outcomes.  
-
-- **Medicaid Expansion**  
-  - Coefficient ≈ **+5.55**, *p* < 0.001  
-  - Strong positive correlation with overdose mortality.  
-  - Suggests that increased healthcare access may correspond with **greater detection/reporting of overdoses**.  
-
-- **Poverty Rate (scaled)**  
-  - Coefficient ≈ **−2.47**, *p* = 0.012  
-  - Unexpected negative association.  
-  - Likely reflects **interaction with demographic structure** (e.g., rural vs urban states) rather than a protective effect of poverty.  
-
-- **Naloxone Access Laws & Unemployment Rate**  
-  - No statistically significant associations detected in the current specification.  
-  - Highlights the complexity of policy effectiveness across heterogeneous state contexts.  
-
-- **State-Level Random Effects**  
-  - Variance ≈ **47**  
-  - Confirms substantial **unobserved heterogeneity** across states, reinforcing the value of multilevel modeling.  
-
-> ⚖️ **Interpretation Note:**  
-> These findings do not imply that policies like PDMP or Medicaid Expansion *increase* mortality.  
-> Instead, they highlight the **complexity of opioid policy evaluation**, where effects are shaped by **temporal lags, reporting practices, demographic context, and policy interactions**.  
-
 ---
 
 ## 📸 Selected Figures
