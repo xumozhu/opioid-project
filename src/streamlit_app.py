@@ -240,71 +240,119 @@ elif section == "📊 Exploratory Data Analysis (EDA)":
 
 # ---------- 3) ML Forecast ----------
 elif section == "🤖 Machine Learning Forecast":
-    st.subheader("🤖 Machine Learning Prediction Results (XGBoost)")
 
-    import xgboost as xgb
-    import pandas as pd
-    import numpy as np
-    import matplotlib.pyplot as plt
-    from sklearn.metrics import r2_score, mean_squared_error
-    from sklearn.model_selection import train_test_split
+    st.subheader("🤖 Machine Learning Prediction Results (XGBoost – Panel/Lag Model)")
+    st.write("This model uses: lag-1 mortality, state fixed effects, scaled socioeconomic controls, and policy variables with temporal splitting and early stopping.")
 
-    st.write("Click the button below to train the model on the 2010–2020 dataset.")
+    if st.button("Run Full Panel XGBoost Model 🚀"):
+        with st.spinner("Training the panel model with early stopping… this may take a few seconds ⏳"):
 
-    if st.button("Run XGBoost Model 🚀"):
-        with st.spinner("Training model... this may take a few seconds ⏳"):
+            # ---------------------
+            # Load your full panel dataset
+            # ---------------------
+            df = pd.read_csv("cleaned_panel.csv")   # <── 你换成自己的文件
 
-            # Load your dataset
-            df = pd.read_csv("your_full_panel_dataset.csv")
+            # LAG-1 MORTALITY
+            df = df.sort_values(["state", "year"])
+            df["lag1_rate"] = df.groupby("state", observed=True)["death_rate_per_100k"].shift(1)
 
-            # ---- X / y split ----
-            y = df["opioid_mortality_rate"]
-            X = df.drop(["opioid_mortality_rate"], axis=1)
+            # TEMPORAL SPLIT
+            train_all = df[df["year"] <= 2018].dropna(subset=["lag1_rate"]).copy()
+            test      = df[df["year"] >  2018].dropna(subset=["lag1_rate"]).copy()
 
-            X_train, X_test, y_train, y_test = train_test_split(
-                X, y, test_size=0.15, random_state=42
+            trn = train_all[train_all["year"] <= 2017]
+            val = train_all[train_all["year"] == 2018]
+
+            # ---------------------
+            # Prepare state fixed effects (dummies)
+            # ---------------------
+            st_states = sorted(df["state"].unique())
+            X_state = pd.get_dummies(df["state"])[st_states]   # 保持一致的列顺序
+
+            # ---------------------
+            # Design matrix builder
+            # ---------------------
+            def design_matrix(frame, state_dummies):
+                base = [
+                    "pdmp_implemented", "naloxone_access", "medicaid_expansion",
+                    "lag1_rate",
+                    "poverty_population_scaled", "median_household_income_scaled", 
+                    "unemployment_rate_scaled",
+                ]
+                cols = [c for c in base if c in frame.columns]
+                X = frame[cols].copy()
+                X = pd.concat([X, state_dummies.reindex(frame.index)], axis=1)
+                return X
+
+            X_trn  = design_matrix(trn,  X_state)
+            X_val  = design_matrix(val,  X_state)
+            X_test = design_matrix(test, X_state)
+
+            y_trn = trn["death_rate_per_100k"]
+            y_val = val["death_rate_per_100k"]
+            y_test = test["death_rate_per_100k"]
+
+            # ---------------------
+            # XGBoost with early stopping
+            # ---------------------
+            params = {
+                "objective": "reg:squarederror",
+                "eta": 0.05,
+                "max_depth": 3,
+                "min_child_weight": 3,
+                "lambda": 1.0,
+                "subsample": 0.9,
+                "colsample_bytree": 0.8,
+                "seed": 42,
+                "eval_metric": "rmse",
+            }
+
+            dtrn = xgb.DMatrix(X_trn.values, y_trn.values)
+            dval = xgb.DMatrix(X_val.values, y_val.values)
+            dte  = xgb.DMatrix(X_test.values)
+
+            bst = xgb.train(
+                params,
+                dtrn,
+                num_boost_round=2000,
+                evals=[(dval, "val")],
+                early_stopping_rounds=50,
+                verbose_eval=False
             )
 
-            # ---- Train XGBoost ----
-            model = xgb.XGBRegressor(
-                n_estimators=600,
-                learning_rate=0.05,
-                max_depth=5,
-                subsample=0.9,
-                colsample_bytree=0.9,
-                random_state=42
-            )
-            model.fit(X_train, y_train)
+            # PREDICT
+            if bst.best_iteration is not None:
+                y_pred = bst.predict(dte, iteration_range=(0, bst.best_iteration + 1))
+            else:
+                y_pred = bst.predict(dte)
 
-            # ---- Predictions ----
-            y_pred = model.predict(X_test)
-            r2 = r2_score(y_test, y_pred)
-            rmse = mean_squared_error(y_test, y_pred, squared=False)
+            rmse = float(np.sqrt(mean_squared_error(y_test, y_pred)))
+            r2   = float(r2_score(y_test, y_pred))
 
-        # -------- Show Metrics --------
+        # ---------------------
+        # Display results
+        # ---------------------
         c1, c2 = st.columns(2)
-        c1.metric("XGBoost R² (test set)", f"{r2:.3f}")
-        c2.metric("XGBoost RMSE (per 100k)", f"{rmse:.2f}")
-        st.caption("Evaluated on held-out years at the state–year level.")
+        c1.metric("XGBoost R² (Panel Model)", f"{r2:.3f}")
+        c2.metric("XGBoost RMSE", f"{rmse:.2f}")
 
-        # -------- Plot Pred vs Actual --------
+        # Predicted vs Actual
         fig, ax = plt.subplots(figsize=(6, 5))
-        ax.scatter(y_test, y_pred, alpha=0.6)
-        ax.plot([y_test.min(), y_test.max()], [y_test.min(), y_test.max()],
-                linestyle="--", color="gray", label="Perfect Fit")
-        ax.set_xlabel("Actual Mortality Rate")
-        ax.set_ylabel("Predicted Mortality Rate")
+        ax.scatter(y_test, y_pred, alpha=0.7)
+        ax.plot([y_test.min(), y_test.max()],
+                [y_test.min(), y_test.max()],
+                linestyle="--", color="gray")
+        ax.set_xlabel("Actual")
+        ax.set_ylabel("Predicted")
         ax.set_title(f"Predicted vs Actual (R²={r2:.3f}, RMSE={rmse:.2f})")
         st.pyplot(fig)
 
-        # -------- Feature Importance --------
+        # Feature importance
         fig2, ax2 = plt.subplots(figsize=(6, 6))
-        xgb.plot_importance(model, ax=ax2, max_num_features=10)
-        ax2.set_title("Top 10 Feature Importances")
+        xgb.plot_importance(bst, ax=ax2, max_num_features=12)
+        ax2.set_title("XGBoost Feature Importance")
         st.pyplot(fig2)
 
-    else:
-        st.info("Click the button above to train the model.")
 
 
 
