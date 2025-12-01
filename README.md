@@ -59,9 +59,9 @@ The goal is to provide **policy-informed, data-driven insights** with an interac
 ---
 
 ## 📸 Selected Figures
+![Predicted vs Actual ](outputs/png.png)  
 ![Predicted vs Actual 2019](outputs/predicted_vs_actual_2019.png)  
 ![Predicted vs Actual 2020](outputs/predicted_vs_actual_2020.png)  
-![Predicted vs Actual ](outputs/predicted_vs_actual.png)  
 ![feature importance](outputs/feature_importance.png)  
 
 ---
