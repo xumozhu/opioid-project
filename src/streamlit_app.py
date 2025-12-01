@@ -253,7 +253,7 @@ elif section == "🤖 Machine Learning Forecast":
 
 
     for f, cap in [
-        ("/Users/zhuxumo/opioid-project/src/pred_vs_actual_compact.png", "Predicted vs Actual Death Rate (2019–2020)"),
+        ("png.png", "Predicted vs Actual Death Rate (2019–2020)"),
         ("predicted_vs_actual_2019.png", "2019 Prediction"),
         ("predicted_vs_actual_2020.png", "2020 Prediction"),
         ("feature_importance.png", "Feature Importance (XGBoost)"),
