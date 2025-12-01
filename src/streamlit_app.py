@@ -250,7 +250,7 @@ elif section == "🤖 Machine Learning Forecast":
             # ---------------------
             # Load your full panel dataset
             # ---------------------
-            df = pd.read_csv("cleaned_panel.csv")   # <── 你换成自己的文件
+            df = pd.read_csv("merged_data_final.csv")   # <── 你换成自己的文件
 
             # LAG-1 MORTALITY
             df = df.sort_values(["state", "year"])
