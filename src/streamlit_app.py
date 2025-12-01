@@ -67,7 +67,8 @@ if section == "ℹ️ Introduction":
         ax.set_title("U.S. Overdose Deaths (All States, 2010–2020)")
         ax.set_ylabel("Deaths")
         ax.set_xlabel("Year")
-        st.pyplot(fig, use_container_width=True)
+        st.image("xxx.png", width="auto")
+
 
     # --- KPI metrics just under the hero banner ---
     def render_kpis():
