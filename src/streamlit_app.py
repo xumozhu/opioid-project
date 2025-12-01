@@ -239,7 +239,7 @@ elif section == "📊 Exploratory Data Analysis (EDA)":
             st.info(f"Image not found: {file}")
 
 # ---------- 3) ML Forecast ----------
-  elif section == "🤖 Machine Learning Forecast":
+elif section == "🤖 Machine Learning Forecast":
     st.subheader("🤖 Machine Learning Prediction Results (XGBoost)")
 
     import xgboost as xgb
@@ -305,6 +305,8 @@ elif section == "📊 Exploratory Data Analysis (EDA)":
 
     else:
         st.info("Click the button above to train the model.")
+
+
 
 # elif section == "🤖 Machine Learning Forecast":
 #     st.subheader("🤖 Machine Learning Prediction Results (XGBoost)")
