@@ -239,10 +239,31 @@ elif section == "📊 Exploratory Data Analysis (EDA)":
             st.info(f"Image not found: {file}")
 
 # ---------- 3) ML Forecast ----------
+
 elif section == "🤖 Machine Learning Forecast":
 
     st.subheader("🤖 Machine Learning Prediction Results (XGBoost – Panel Lag Model)")
-
+    # Load data
+    df = pd.read_csv("merged_data_final.csv")  # 你的文件名
+    
+    # Basic cleaning
+    df = df[df["population"] > 0].copy()
+    
+    # ⭐ 关键步骤：生成死亡率（否则会 KeyError）
+    df["death_rate_per_100k"] = df["deaths"] / df["population"] * 1e5
+    
+    # scale socioeconomic variables
+    for col in ["poverty_population", "median_household_income", "unemployment_rate"]:
+        mean, std = df[col].mean(), df[col].std()
+        df[f"{col}_scaled"] = (df[col] - mean) / std
+    
+    # Create state fixed effect dummies
+    X_state = pd.get_dummies(df["state"], prefix="state", drop_first=False)
+    
+    # Now you can safely create lag1_rate
+    df = df.sort_values(["state", "year"])
+    df["lag1_rate"] = df.groupby("state", observed=True)["death_rate_per_100k"].shift(1)
+    
     if st.button("Run Full XGBoost Model 🚀"):
 
         with st.spinner("Training panel model with early stopping..."):
