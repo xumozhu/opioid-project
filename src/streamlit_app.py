@@ -238,142 +238,29 @@ elif section == "📊 Exploratory Data Analysis (EDA)":
         else:
             st.info(f"Image not found: {file}")
 
-# ---------- 3) ML Forecast ----------
+
+
+
+
 elif section == "🤖 Machine Learning Forecast":
+    st.subheader("🤖 Machine Learning Prediction Results (XGBoost)")
 
-    st.subheader("🤖 Machine Learning Prediction Results (XGBoost – Panel Lag Model)")
+    c1, c2 = st.columns(2)
+    c1.metric("XGBoost R² (2019–2020)", "0.756")
+    c2.metric("XGBoost RMSE (per 100k)", "5.55")  
+    st.caption("Evaluated on held-out years 2019–2020 at the state–year level.")
 
-    # ----------------------------
-    # 1. Load & preprocess data
-    # ----------------------------
-    df = pd.read_csv("datasets/merged_data_final.csv")
-
-    # Basic cleaning
-    df = df[df["population"] > 0].copy()
-
-    # Derive mortality rate  ←⭐ 必须在 lag1_rate 之前
-    df["death_rate_per_100k"] = df["deaths"] / df["population"] * 1e5
-
-    # Scale socioeconomic variables
-    for col in ["poverty_population", "median_household_income", "unemployment_rate"]:
-        df[f"{col}_scaled"] = (df[col] - df[col].mean()) / df[col].std()
-
-    # State fixed effect dummies
-    X_state = pd.get_dummies(df["state"], prefix="state", drop_first=False)
-
-    # Sort and generate lag1_rate  ←⭐ 使用上面预处理好的 df
-    df = df.sort_values(["state", "year"])
-    df["lag1_rate"] = df.groupby("state", observed=True)["death_rate_per_100k"].shift(1)
-
-    # ----------------------------
-    # 2. Button to run model
-    # ----------------------------
-    if st.button("Run Full XGBoost Model 🚀"):
-
-        with st.spinner("Training panel model with early stopping..."):
-
-            # Temporal split (train ≤2018; test >2018)
-            train_all = df[df["year"] <= 2018].dropna(subset=["lag1_rate"]).copy()
-            test = df[df["year"] > 2018].dropna(subset=["lag1_rate"]).copy()
-
-            trn = train_all[train_all["year"] <= 2017]
-            val = train_all[train_all["year"] == 2018]
-
-            # Design Matrix
-            def design_matrix(frame, state_FE):
-                cols = [
-                    "pdmp_implemented", "naloxone_access", "medicaid_expansion",
-                    "lag1_rate",
-                    "poverty_population_scaled", "median_household_income_scaled",
-                    "unemployment_rate_scaled",
-                ]
-                X = frame[cols].copy()
-                return pd.concat([X, state_FE.reindex(frame.index)], axis=1)
-
-            X_trn = design_matrix(trn, X_state)
-            X_val = design_matrix(val, X_state)
-            X_test = design_matrix(test, X_state)
-
-            y_trn = trn["death_rate_per_100k"]
-            y_val = val["death_rate_per_100k"]
-            y_test = test["death_rate_per_100k"]
-
-            # XGBoost params
-            params = {
-                "objective": "reg:squarederror",
-                "eta": 0.05,
-                "max_depth": 3,
-                "min_child_weight": 3,
-                "lambda": 1.0,
-                "subsample": 0.9,
-                "colsample_bytree": 0.8,
-                "seed": 42,
-                "eval_metric": "rmse",
-            }
-
-            # Convert to DMatrix
-            dtrn = xgb.DMatrix(X_trn.values, y_trn.values)
-            dval = xgb.DMatrix(X_val.values, y_val.values)
-            dte = xgb.DMatrix(X_test.values)
-
-            # Train
-            bst = xgb.train(
-                params,
-                dtrn,
-                num_boost_round=2000,
-                evals=[(dval, "val")],
-                early_stopping_rounds=50,
-                verbose_eval=False
-            )
-
-            # Predict
-            if bst.best_iteration is not None:
-                y_pred = bst.predict(dte, iteration_range=(0, bst.best_iteration + 1))
-            else:
-                y_pred = bst.predict(dte)
-
-            # Metrics
-            rmse = float(np.sqrt(mean_squared_error(y_test, y_pred)))
-            r2 = float(r2_score(y_test, y_pred))
-
-        # Display Metrics
-        c1, c2 = st.columns(2)
-        c1.metric("XGBoost R² (2019–2020)", f"{r2:.3f}")
-        c2.metric("RMSE (per 100k)", f"{rmse:.2f}")
-
-        # Predicted vs Actual Plot
-        fig, ax = plt.subplots(figsize=(6, 5))
-        ax.scatter(y_test, y_pred, alpha=0.7)
-        ax.plot([y_test.min(), y_test.max()],
-                [y_test.min(), y_test.max()],
-                linestyle="--", color="gray")
-        ax.set_xlabel("Actual")
-        ax.set_ylabel("Predicted")
-        ax.set_title(f"Predicted vs Actual (R²={r2:.3f}, RMSE={rmse:.2f})")
-        st.pyplot(fig)
-
-
-
-
-# elif section == "🤖 Machine Learning Forecast":
-#     st.subheader("🤖 Machine Learning Prediction Results (XGBoost)")
-
-#     c1, c2 = st.columns(2)
-#     c1.metric("XGBoost R² (2019–2020)", "0.756")
-#     c2.metric("XGBoost RMSE (per 100k)", "5.55")  
-#     st.caption("Evaluated on held-out years 2019–2020 at the state–year level.")
-
-#     for f, cap in [
-#         ("png.png", "Predicted vs Actual Death Rate (2019–2020)"),
-#         ("predicted_vs_actual_2019.png", "2019 Prediction"),
-#         ("predicted_vs_actual_2020.png", "2020 Prediction"),
-#         ("feature_importance.png", "Feature Importance (XGBoost)"),
-#     ]:
-#         p = os.path.join(OUT_DIR, f)
-#         if os.path.exists(p):
-#             st.image(p, caption=cap, use_column_width=True)
-#         else:
-#             st.info(f"Image not found: {f}")
+    for f, cap in [
+        ("png.png", "Predicted vs Actual Death Rate (2019–2020)"),
+        ("predicted_vs_actual_2019.png", "2019 Prediction"),
+        ("predicted_vs_actual_2020.png", "2020 Prediction"),
+        ("feature_importance.png", "Feature Importance (XGBoost)"),
+    ]:
+        p = os.path.join(OUT_DIR, f)
+        if os.path.exists(p):
+            st.image(p, caption=cap, use_column_width=True)
+        else:
+            st.info(f"Image not found: {f}")
 
 # # ---------- 4) Policy Regression Results ----------
 # elif section == "📜 Policy Regression Results":
