@@ -108,9 +108,10 @@ The goal is to provide **policy-informed, data-driven insights** with an interac
 ---
 
 ## ✍️ Author
-**Xumo Zhu**  
-UC San Diego · B.S. Math–Statistics & Probability (Gaduated in March,2025)  
+**Chloe(Xumo) Zhu**  
+Northwestern University · M.S. in Machine Learning and Data Science  
+UC San Diego · B.S. in Mathematics – Statistics & Probability  
 
-- **GitHub:** [xumozhu](https://github.com/xumozhu)  
-- **LinkedIn:** [Xumo Zhu](https://www.linkedin.com/in/xumo-z-a39b1524b/)  
-- **Email:** xumozhu516@gmail.com
+- **GitHub:** [xumozhu](https://github.com/xumozhu)
+- **LinkedIn:** [Chloe Zhu](https://www.linkedin.com/in/chloe-z-a39b1524b/)
+- **Email:** chloezhu516@gmail.com
